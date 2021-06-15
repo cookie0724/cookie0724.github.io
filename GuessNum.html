@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style>
+        .container{
+            margin-top: 30px;
+        }
+        .box{
+            width: 300px;
+            height: 100px;
+            border:black solid 1px;
+        }
+        #myanswer{
+            width: 100px;
+            height: 20px;
+            border:black solid 1px;
+        }
+
+        .calc,.start_btn{
+            min-width: 200px;
+        }
+        .start_btn button{
+            border-radius: 15px;
+            border-style: none;
+        }
+
+        .calc button{
+            border-radius: 5px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(184, 184, 184, 0.74);
+            border-style: none;
+            padding: 2px 5px;
+            border: black solid 0.5px;
+            
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="bgc m-auto">
+            <div class="row d-flex flex-column align-content-center pt-3">
+                <div id="result" class="box my-3 m-auto text-center">
+                    <p id="lastResult"></p>
+                    <p id="range">0~100</p>
+                    <p id="guess"></p>
+                </div>
+                <div class="col-6 mt-3 col-offset-0">
+                    <div class="col-3 start_btn mx-auto my-2 text-center">
+                        <button id="random_num" onclick="randomNum()" class="btn-primary p-1">產生數字</button>
+                        <button onclick="Reset()" class="btn-warning mt-3">重新開始</button>
+                        <input type="text" disabled id="myanswer" class="my-2">
+                    </div>
+                    <div class="col-3 calc col-offset-0 mx-auto text-center">
+                        <button class="value" id="random_num">1</button>
+                        <button class="value">2</button>
+                        <button class="value">3</button>
+                        <button class="value">4</button>
+                        <button class="value">5</button>
+                        <button class="value">6</button>
+                        <button class="value">7</button>
+                        <button class="value">8</button>
+                        <button class="value">9</button>
+                        <button onclick="Delete()" id="deleteanswer" class="text-danger">←</button>
+                        <button class="value">0</button>
+                        <button onclick="CheckAnswer()" id="submitanswer" class="text-success">V</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+    var answer= Math.floor(Math.random()*100)+0;
+
+    const guess=document.getElementById("guess");
+    const range=document.getElementById("range");
+    const lastResult=document.getElementById("lastResult");
+
+    const myanswer=document.getElementById("myanswer");
+    const submitanswer=document.getElementById("submitanswer");
+    let maxValue =100;
+    let minValue =0;
+
+
+            window.onload=function(){
+                myanswer.disabled=true;
+                myanswer.style.backgroundColor='white';
+
+                let _value = document.querySelectorAll(".value");
+                _value.forEach(x=>{
+                    x.disabled=true;
+                })
+
+            submitanswer.disabled=true;
+        }
+
+        //建立方法
+        //1.產生亂數
+        function randomNum(){
+            document.getElementById('random_num').disabled=true;
+            console.log(answer);
+            let _value = document.querySelectorAll(".value");
+            _value.forEach(x=>{
+                x.disabled=false;
+            })
+            submitanswer.disabled=false;
+
+
+        }
+        //2.按鈕輸入
+        input();
+        function input(value){
+            let _value = document.querySelectorAll(".value");
+            _value.forEach(x=>{
+                x.addEventListener('click',()=>{
+                    myanswer.value+=x.textContent;
+                })
+            })
+
+        }
+        //3.判斷答案
+        function CheckAnswer(){
+            let _userguess= Number(myanswer.value);
+            if( _userguess>=maxValue ||  _userguess<=minValue){
+                
+                guess.innerHTML="請輸入正確範圍的數字!";
+                myanswer.value='';
+                lastResult.textContent='';
+            }
+            else{
+                if(_userguess == ""){
+                    guess.innerHTML="請輸入數字!";
+                    guess.style.color='red';
+                }
+                else if(_userguess == answer){
+                    lastResult.textContent='';
+                    guess.textContent='答對了';
+                    myanswer.value='';
+                }
+                else{
+                    guess.textContent="輸入的數字：";
+                    guess.style.color='black';
+                    guess.textContent+=_userguess+'';
+                    if(_userguess<answer){
+                        minValue=_userguess;
+                        range.innerHTML=`${_userguess}~${maxValue}`;
+                        myanswer.value='';
+                    }
+                    else if(_userguess>answer){
+                        maxValue=_userguess;
+                        range.innerHTML=`${(minValue)}~${_userguess}`;
+                        myanswer.value='';
+                    }
+                }
+            }
+        }
+        //4.刪除按鈕
+        function Delete(){
+            let _delete = document.getElementById("deleteanswer");
+            if(myanswer.value!=''){
+                let inputValue = myanswer.value;
+                console.log(inputValue.length)
+                inputValue.substring(0,inputValue.length-1);
+                console.log(inputValue.substring(0,inputValue.length-1));
+                myanswer.value=inputValue.substring(0,inputValue.length-1);
+            }
+        }
+        //5.重置
+        function Reset(){
+            window.location.reload();
+        }
+
+
+
+    </script>
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    -->
+</body>
+</html>
