@@ -10,66 +10,51 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <title>Guess Number</title>
+    <title>Document</title>
     <style>
-        body {
-            min-height: 100vh;
-            background-size: 600px;
-            background-repeat: no-repeat;
-            background-position: bottom;
-        }
-
         .container-md {
-            max-width: 600px !important;
+            max-width: 960px;
         }
     </style>
 </head>
 
 <body>
-    <!-- 按鈕區 -->
+    
     <div class="container-md">
         <div class="col-auto my-3">
             <div class="input-group">
                 <button class="btn btn-danger" type="button" id="start" style="flex-grow: 1;">開始</button>
-                <button class="btn btn-info" type="button" id="restart" style="flex-grow: 1;">放棄重來</button>
+                <button class="btn btn-primary" type="button" id="restart" style="flex-grow: 1;">放棄重來</button>
                 <button class="btn btn-danger" type="button" id="peep" style="flex-grow: 1;">看答案</button>
             </div>
         </div>
     </div>
-    <!-- 答案區 -->
+    
     <div class="container-md" id="show">
         <table class="table table-bordered"></table>
     </div>
-    <!-- 猜測區 -->
+    
     <div class="container-md">
         <div class="col-auto my-3">
             <div class="input-group">
                 <div class="input-group-text">猜數字</div>
                 <input type="text" class="form-control" id="guess_input" 
                     onkeyup="value=value.replace(/[^\d]/g,'')">
-                <button class="btn btn-info" type="button" id="guess">猜!</button>
+                <button class="btn btn-primary" type="button" id="guess">猜!</button>
             </div>
         </div>
     </div>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
-        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
-        crossorigin="anonymous"></script>
+    
 
     <script>
-        // 開始 button
         let start = document.getElementById("start");
         let answer = [];
         start.addEventListener('click', function () {
             let num_array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-            answer = shuffler(num_array).splice(0, 4); //選位置0-3的數值
+            answer = shuffler(num_array).splice(0, 4); 
             let tr = document.createElement("tr");
             let td = document.createElement("td");
-            // td.innerHTML = `<span class="badge bg-warning" style="margin-left:5px;">開始</span>`
             td.innerHTML = "開始"
             td.setAttribute("style", "height:50px;");
             tr.appendChild(td);
@@ -77,7 +62,6 @@
             start.disabled = true;
         });
 
-        //Fisher-Yates Shuffler
         function shuffler(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 let j = Math.floor(Math.random() * (i + 1));
@@ -89,7 +73,6 @@
             return array;
         }
 
-        //guess button
         let guess = document.getElementById("guess");
         let table = document.getElementsByTagName("table")[0];
         guess.addEventListener('click', function () {
@@ -100,31 +83,31 @@
                 judge();
             }
         });
-        //judge function
+
         function judge() {
             let guess_input = document.getElementById("guess_input");
-            //string to array
+
             guess_array = guess_input.value.split("");
             let a = 0;
             let b = 0;
 
-            //判斷輸入長度是否為4
+
             if (answer.length == 0) {
-                window.alert("請先按【開始】");
+                window.alert("請先按開始");
             }
             else if (guess_array.length != 4) {
                 window.alert("請輸入4個不同的數字")
                 guess_input.value = "";
             }
             else {
-                //計算A
+                
                 for (let i = 0; i < 4; i++) {
                     if (guess_array[i] == answer[i]) {
                         a++;
                     }
                 }
 
-                //計算B + A
+                
                 guess_array.forEach(function (item) {
                     if (parseInt(item) == NaN) {
                         window.alert("請輸入4個不同的數字");
@@ -134,10 +117,10 @@
                     }
                 })
 
-                //計算B
+                
                 b = b - a;
 
-                //step1:判斷成功或失敗; step2:呈現結果在table中
+                
                 if (a != 4) {
                     showResult("bg-danger")
                 }
@@ -146,10 +129,10 @@
 
                 }
 
-                //設定 text form
+                
                 guess_input.value = "";
 
-                //加入【再來一次】button
+                
                 let tr = document.createElement("tr");
                 let td = document.createElement("td");
                 td.innerHTML = `<button class="btn btn-outline-secondary" id="again" style="margin-left:5px;">再來一次</button>`
@@ -158,20 +141,15 @@
                     tr.appendChild(td);
                     table.appendChild(tr);
 
-                    //再來一次
+                    
                     let again = document.getElementById("again");
                     again.addEventListener('click', function () {
                         start.disabled = false;
                         table.innerHTML = "";
                         answer = [];
-                        // window.alert("請再按一次【開始】");
                     });
                 }
 
-
-
-
-                //showResult function
                 function showResult(bg_type) {
                     let tr = document.createElement("tr");
                     let td = document.createElement("td");
@@ -183,17 +161,14 @@
             }
         }
 
-
-        //放棄重來
         let restart = document.getElementById("restart");
         restart.addEventListener("click", function () {
             start.disabled = false;
             table.innerHTML = "";
             answer = [];
-            // window.alert("請再按一次【開始】");
+
         });
 
-        //看答案
         let peep = document.getElementById("peep");
         peep.addEventListener('click', function () {
             if (answer.length == 0) {
@@ -204,10 +179,14 @@
             }
         });
 
-
-
-
     </script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>
 
 </body>
 
