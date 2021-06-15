@@ -1,0 +1,351 @@
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+        <title>Hello, world!</title>
+        <style>
+            i{
+                font-size: 48px;
+            }
+            [box-id]{
+                width: 80px;
+                height: 80px;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                border: none;
+                transition: 0.3s;
+            }
+            [box-id].active{
+                border: solid 5px red;
+                box-shadow: 0 0 20px red ;
+                transition: 0s;
+            }
+            #msg{
+                font-size: 36px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="Container">
+            <div class="row">
+                <div box-id = "1" class="col-1"></div>
+                <div box-id = "2" class="col-1"></div>
+                <div box-id = "3" class="col-1"></div>
+                <div box-id = "4" class="col-1"></div>
+                <div box-id = "5" class="col-1"></div>
+                <div box-id = "6" class="col-1"></div>
+                <div box-id = "7" class="col-1"></div>
+                <div box-id = "8" class="col-1"></div>
+                <div box-id = "9" class="col-1"></div>
+                <div box-id = "10" class="col-1"></div>
+                <div box-id = "11" class="col-1"></div>
+                <div box-id = "12" class="col-1"></div>
+            </div>
+            <div class="row">
+                <div box-id = "32" class="col-1"></div>
+                <div class="col-10 m-auto"></div>
+                <div box-id = "13" class="col-1"></div>
+            </div>
+            <div class="row">
+                <div box-id = "31" class="col-1"></div>
+                <div class="col-10"></div>
+                <div box-id = "14" class="col-1"></div>
+            </div>
+            <div class="row">
+                <div box-id = "30" class="col-1"></div>
+                <div class="col-10 "></div>
+                <div box-id = "15" class="col-1"></div>
+            </div>
+            <div class="row">
+                <div box-id = "29" class="col-1"></div>
+                <div class="col-10 "></div>
+                <div box-id = "16" class="col-1"></div>
+            </div>
+            <div class="row">
+                <div box-id ="17" class="col-1"></div>
+                <div box-id ="18" class="col-1"></div>
+                <div box-id ="19" class="col-1"></div>
+                <div box-id ="20" class="col-1"></div>
+                <div box-id ="21" class="col-1"></div>
+                <div box-id ="22" class="col-1"></div>
+                <div box-id ="23" class="col-1"></div>
+                <div box-id ="24" class="col-1"></div>
+                <div box-id ="25" class="col-1"></div>
+                <div box-id ="26" class="col-1"></div>
+                <div box-id ="27" class="col-1"></div>
+                <div box-id ="28" class="col-1"></div>
+            </div>
+            <div class="row">
+                <button>開始</button>
+            </div>
+        </div>
+        <script>
+            let brickData = [
+                {
+                    id:'1',
+                    icon:'fab fa-instagram-spuare',
+                    color:'red',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'2',
+                    icon:'fab fa-facebook-spuare',
+                    color:'blue',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'3',
+                    icon:'fab fa-line',
+                    color:'green',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'4',
+                    icon:'fab fa-instagram-spuare',
+                    color:'red',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'5',
+                    icon:'fab fa-facebook-spuare',
+                    color:'blue',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'6',
+                    icon:'fab fa-line',
+                    color:'green',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'7',
+                    icon:'fab fa-instagram-spuare',
+                    color:'red',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'8',
+                    icon:'fab fa-facebook-spuare',
+                    color:'blue',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'9',
+                    icon:'fab fa-line',
+                    color:'green',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'10',
+                    icon:'fab fa-instagram-spuare',
+                    color:'red',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'11',
+                    icon:'fab fa-facebook-spuare',
+                    color:'blue',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'12',
+                    icon:'fab fa-line',
+                    color:'green',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'13',
+                    icon:'fab fa-instagram-spuare',
+                    color:'red',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'14',
+                    icon:'fab fa-facebook-spuare',
+                    color:'blue',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'15',
+                    icon:'fab fa-line',
+                    color:'green',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'16',
+                    icon:'fab fa-instagram-spuare',
+                    color:'red',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'17',
+                    icon:'fab fa-facebook-spuare',
+                    color:'blue',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'18',
+                    icon:'fab fa-line',
+                    color:'green',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'19',
+                    icon:'fab fa-instagram-spuare',
+                    color:'red',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'20',
+                    icon:'fab fa-facebook-spuare',
+                    color:'blue',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'21',
+                    icon:'fab fa-line',
+                    color:'green',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'22',
+                    icon:'fab fa-instagram-spuare',
+                    color:'red',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'23',
+                    icon:'fab fa-facebook-spuare',
+                    color:'blue',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'24',
+                    icon:'fab fa-line',
+                    color:'green',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'25',
+                    icon:'fab fa-instagram-spuare',
+                    color:'red',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'26',
+                    icon:'fab fa-facebook-spuare',
+                    color:'blue',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'27',
+                    icon:'fab fa-line',
+                    color:'green',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'28',
+                    icon:'fab fa-instagram-spuare',
+                    color:'red',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'29',
+                    icon:'fab fa-facebook-spuare',
+                    color:'blue',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'30',
+                    icon:'fab fa-line',
+                    color:'green',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'31',
+                    icon:'fab fa-instagram-spuare',
+                    color:'red',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    id:'32',
+                    icon:'fab fa-facebook-spuare',
+                    color:'blue',
+                    target:function(){
+                        return this.icon.split('-')[1];
+                    },
+                    
+
+
+                }
+            ]
+                
+            let steps = 0;
+            let allsteps = 0;
+            let currentIndex = 0 ;
+            let speed;
+
+            let bricks = document.querySelectorAll('[box-id]');
+            bricks = Array.from(bricks).sort(
+                (a,b)=>{
+                    return a.getAttributeNode('box-id').value-b.getAttributeNode('box-id').value;
+                }
+            )
+            console.log(bricks);
+            bricks.forEach((x,index)=>{
+                let id = index+1;
+                let data = brickData.find(x=>x.id ==id);
+                let icon = document.createElement("i")
+                icon.setAttribute('class',data.icon);
+                icon.style.color=data.color;
+                x.appendChild(icon);
+            });
+
+            document.querySelector('button').addEventListener('click',function(){
+                speed=50;
+                let random = math.floor(math.random()*brickData.length)+1;
+                steps = random + (3*brick.length);
+                allsteps=steps;
+                turnAround();
+            });
+
+            function turnAround(){
+                bricks[currentIndex].classList.remove('active');
+                currentIndex++;
+
+                if (currentIndex>=bricks.length)currentIndex=0;
+                bricks[currentIndex].classList.add('active');
+                steps--;
+
+                if(steps>0){
+                    setTimeout(turnAround,speed);
+                    if(steps<math.floor((allsteps/3)))speed+=7;
+                }else{
+                    let msgBox = document.getElementById('msg');
+                    let val = brickData[currentIndex].target();
+                    msgBox.innerText= `接下來->${val}`;
+                }
+            }
+        </script>
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+        <!--
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+        -->
+    </body>
+    </html>
